@@ -4,6 +4,6 @@ import (
 	"fmt"
 )
 
-func queue() {
+func Queue() {
 	fmt.Println("Hello, World!")
 }

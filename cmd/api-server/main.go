@@ -4,10 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"net/http"
+
+	"github.com/alexpojman/go-starter/internal/queue"
 )
 
 func main() {
-
+	queue.Queue()
 	resp, err := http.Get("https://gobyexample.com")
 
 	if err != nil {
