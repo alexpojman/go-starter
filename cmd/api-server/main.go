@@ -1,30 +1,18 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"net/http"
-
+	"github.com/alexpojman/go-starter/cmd/api-server/routes"
 	"github.com/alexpojman/go-starter/internal/queue"
+	"github.com/labstack/echo/v4"
 )
 
 func main() {
 	queue.Queue()
-	resp, err := http.Get("https://gobyexample.com")
+	
+	e := echo.New()
+	e.HideBanner = true
 
-	if err != nil {
-		panic(err)
-	}
-
-	defer resp.Body.Close()
-
-	fmt.Println("Response status:", resp.Status)
-
-	scanner := bufio.NewScanner(resp.Body)
-    for i := 0; scanner.Scan() && i < 5; i++ {
-        fmt.Println(scanner.Text())
-    }
-    if err := scanner.Err(); err != nil {
-        panic(err)
-    }
+	e.GET("/", routes.Hello)
+	e.POST("/save", routes.SaveUser)
+	e.Logger.Fatal(e.Start(":1323"))
 }
