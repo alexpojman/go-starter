@@ -1,9 +1,9 @@
 package queue
 
 import (
-	"fmt"
+	"github.com/rs/zerolog"
 )
 
-func Queue() {
-	fmt.Println("Hello, World!")
+func Queue(logger zerolog.Logger) {
+	logger.Info().Msg("Adding to queue")
 }
