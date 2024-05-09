@@ -1,18 +1,18 @@
 package main
 
 import (
-	"os"
-
+	"github.com/alexpojman/go-starter/internal/logger"
 	"github.com/alexpojman/go-starter/internal/queue"
 	"github.com/alexpojman/go-starter/internal/routes"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 )
 
 func main() {
-	logger := zerolog.New(os.Stdout)
-	queue.Queue(logger)
+	logger.InitLogger(logger.Development)
+	
+	queue.Queue()
 	
 	e := echo.New()
 	e.HideBanner = true
@@ -20,7 +20,7 @@ func main() {
 		LogURI:    true,
 		LogStatus: true,
 		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
-			logger.Info().
+			log.Info().
 				Str("URI", v.URI).
 				Int("status", v.Status).
 				Msg("request")
