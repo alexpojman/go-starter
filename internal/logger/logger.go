@@ -13,12 +13,10 @@ const (
 )
 
 func InitLogger(environment string) {
-	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
-
-	logger := zerolog.New(os.Stdout)
+	logger := zerolog.New(os.Stdout).With().Timestamp().Logger()
 	
 	if (environment == Development) {
-		log.Logger = logger.Output(zerolog.ConsoleWriter{Out: os.Stderr})
+		log.Logger = logger.Output(zerolog.ConsoleWriter{Out: os.Stderr })
 	} else {
 		log.Logger = logger
 	}
