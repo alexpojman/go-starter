@@ -24,7 +24,7 @@ func (c *config) LoadConfigFile(path, configType, configFile string) error {
 		c.AddConfigPath(path)
 		c.SetConfigType(configType)
 		c.SetConfigName(configFile)
-		
+
 		err := c.ReadInConfig()
 
 		if err != nil {

@@ -18,7 +18,7 @@ func InitEchoServer() *echo.Echo {
 				Str("URI", v.URI).
 				Int("status", v.Status).
 				Msg("request")
-	
+
 			return nil
 		},
 	}))

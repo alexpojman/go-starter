@@ -21,14 +21,14 @@ func main() {
 
 	// 2. Initialize Logger
 	logger.InitLogger(c.GetString("ENVIRONMENT"))
-	
+
 	postgres := db.NewPostgresDb("pojo_db", "postgresql://postgres:postgres@localhost:5432", true)
 
 	postgres.Connect()
 	defer postgres.Disconnect()
 
 	queue.Queue()
-	
+
 	e := server.InitEchoServer()
 
 	e.GET("/", routes.Hello)

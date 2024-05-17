@@ -9,19 +9,19 @@ import (
 )
 
 type postgresDb struct {
-	name    		string
-	uri    			string
-	isSslDisabled 	bool
-	db  			*sql.DB
-	logger 			zerolog.Logger
+	name          string
+	uri           string
+	isSslDisabled bool
+	db            *sql.DB
+	logger        zerolog.Logger
 }
 
 func NewPostgresDb(name, uri string, isSslDisabled bool) *postgresDb {
 	return &postgresDb{
-		name: name,
-		uri: uri,
+		name:          name,
+		uri:           uri,
 		isSslDisabled: isSslDisabled,
-		logger: log.With().Str("actor", "db/postgres").Logger(),
+		logger:        log.With().Str("actor", "db/postgres").Logger(),
 	}
 }
 
@@ -46,7 +46,7 @@ func (p *postgresDb) Connect() {
 
 	connectionUri := fmt.Sprintf("%s/%s", p.uri, p.name)
 
-	if (p.isSslDisabled) {
+	if p.isSslDisabled {
 		connectionUri = fmt.Sprintf("%s?sslmode=disable", connectionUri)
 	}
 

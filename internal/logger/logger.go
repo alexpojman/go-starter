@@ -9,14 +9,14 @@ import (
 
 const (
 	Development string = "development"
-	Production string = "production"
+	Production  string = "production"
 )
 
 func InitLogger(environment string) {
 	logger := zerolog.New(os.Stdout).With().Timestamp().Logger()
-	
-	if (environment == Development) {
-		log.Logger = logger.Output(zerolog.ConsoleWriter{Out: os.Stderr })
+
+	if environment == Development {
+		log.Logger = logger.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	} else {
 		log.Logger = logger
 	}

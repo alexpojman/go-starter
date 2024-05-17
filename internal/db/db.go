@@ -14,7 +14,7 @@ func (s *sqlDB) Begin() {
 	s.DB.Begin()
 }
 
-func initSqlDB(db *sql.DB) *sqlDB  {
+func initSqlDB(db *sql.DB) *sqlDB {
 	return &sqlDB{
 		DB: db,
 	}
